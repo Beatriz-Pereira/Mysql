@@ -1,0 +1,88 @@
+ create database biblioteca;
+ 
+ use biblioteca;
+
+ create table aluno(
+ ra int primary key auto_increment,
+ nome varchar(255),
+ turma varchar(15),
+ email varchar(100),
+ telfixo varchar(20),
+ datanascimento date,
+ telcel varchar (20));
+
+ create table funcionario(
+ codfuncionario int primary key auto_increment,
+ logradouro varchar(255),
+ nome varchar(255),
+ num varchar(10),
+ complemento varchar(255),
+ email varchar(100),
+ telefone varchar(20),
+ bairro varchar(50),
+ cidade varchar(70),
+ uf varchar(2),
+ cep varchar(15),
+ cpf varchar(15),
+ rg varchar(15),
+ datanascimento date,
+ telcel varchar (20));
+
+ create table livro(
+ codlivro int primary key auto_increment,
+ editora varchar(255),
+ genero varchar(255),
+ titulo varchar(255),
+ autor varchar(255));
+
+ create table empdev(
+ codemprestino int primary key auto_increment,
+ data_emprestimo date,
+ data_devolucao date,
+ ra int,
+ Funcionario int,
+ livro int,
+ foreingn key (ra) references ra(ra),
+ foreingn key (codFuncionario) references Funcionario(codFuncionario),
+ foreingn key (codlivro) references livro(codlivro));
+
+ insert into aluno (nome,tuma,email,telfixo,datanascimento,telcel) values  
+ ('Erick de Souza','1C','erick321@gmail.com','11-7697-5334','2005-10-25','11-78458-3651'),
+ (‘Henrique Pereira','1A','riquinho360@gmail.com','11-14785-1656','2003-08-20','11-15987-2532'),
+ ('Amelia Siqueira','1F','amelsiqueira@gmail.com','11-13565-5655','2005-02-09','11-78521-9632'),
+ ('Amanda Alves','1A','amandinhaalves@gmail.com','11-25874-9635','2004-09-15','11-55555-7894'),
+ ('Mariana de Melo’,'1A','marimelo@gmail.com','11-65258-1236','2005-08-16','11-56785-7532'),
+ ('Ingrid Oliveira’,'1C','oliingrid@gmail.com','11-78954-5555','2004-10-26','11-88888-1234'),
+ ('Guilherme Almeida','1B','guialmeida456@gmail.com','11-18954-5665','2005-01-25','11-87798-3334'),
+ (‘Daniel Augustino','1A','danielaug1234@gmail.com','11-14748-2556','2002-10-20','11-16789-1432'),
+ ('Tiago Rodrigues','1F','tiaguinhorodr1gu3s@gmail.com','11-18687-5678','2005-04-08','11-78963-3741'),
+ ('Cristina dos Santos','1C','tinasantos@gmail.com','11-78954-5444','2003-10-16','11-78948-1321'));
+
+ insert into bibliotecario (logradouro,nome,num,complemento,email,telefone,bairro,cidade,uf,cep,cpf,rg,datanascimento,telcel) values 
+ (‘00’,‘Roberta Feitosa’,',’500',’-----’,'roberta0101@gmail.com','11-12344-5444',’ Suíssa’,’ Ribeirão Pires’, ’SP’,’1000-333’,'243,345,345,45',’ 12 345 678-9’,’1987-01-16','11-78948-1321'),
+ (‘01’,‘Paulo Pereira’,',’250',’------’,'paulopp3000@gmail.com','11-789254-3334',’ Suíssa’,’ Ribeirão Pires’, ’SP’,’1000-333’,'373,345,345,65',’ 17 345 345-8’,’1981-07-16','11-42788-1391'),
+ (‘02’,‘Lucineide Costa,',’140',’-------’,'lucicosta195@gmail.com','11-17777-2222',’Parque das Americas’,’Mauá’, ’SP’,’1014-223’,'523,345,115,88',’ 15 678 -7’,’1977-10-18','11-43218-1789'));
+
+ insert into livro (editora,genero,titulo,autor) values
+ ('seguinte','ficção','A Rainha Vermelha','Victoria Aveyard'),
+ ('intriseca','ficção-Romance','Amanhecer','Sthepanie Meyer'),
+ ('martins','ficção','O Senhor dos Aneis','j.r.r. Tolkien')
+ ('Companhia das letras','romance','lolita','vladimir nabokov'),
+ ('Academia de inteligencia LTDA','?','O Semeador de Ideias','Augusto Cury'),
+ ('Best Seller LTDA','drama','princesa','Jean P. Sasson'),
+ ('Tecnoprint LTDA','Romance naturalista conto','O Cortiço','Aluisio Azevedo'),
+ ('Nova Cultural','biografia','Bacon','Francis Bacon'),
+ ('Companhia das Letras','drama','Na natureza selvagem','Jon Krakauer'),
+ ('Nova Fronteira','misterio','Depois do Funeral','Agatha Cristie'));
+
+ insert into empdev (codfuncionario,codlivro,ra,data_emprestimo,data_devolucao) Values
+ (1,1,1,'2020-04-10','2020-04-25'),
+ (3,9,5,'2020-04-15','2020-04-30'),
+ (1,8,9,'2020-04-10','2020-04-30'),
+ (2,6,6,'2020-04-05','2020-05-15'),
+ (3,5,10,'2020-05-30','2020-06-14'),
+ (2,3,3,'2019-06-22','2019-07-07'),
+ (1,7,2,'2019-06-07','2019-07-07'),
+ (2,2,7,'2019-05-10','2019-06-25'),
+ (3,4,4,'2019-05-05','2019-05-20'),
+ (2,10,8,'2019-04-10','2019-04-25')); 
