@@ -1,0 +1,115 @@
+CREATE DATABASE jornal;
+
+use jornal;
+
+CREATE TABLE categoria (
+codcat int PRIMARY KEY auto_increment,
+categoria varchar(255)
+);
+
+CREATE TABLE turma (
+codturma int PRIMARY KEY auto_increment,
+turma varchar(255)
+);
+
+
+CREATE TABLE dia (
+dia int PRIMARY KEY
+);
+
+CREATE TABLE mes (
+mes int PRIMARY KEY
+);
+
+CREATE TABLE ano (
+ano int PRIMARY KEY
+);
+
+CREATE TABLE aluno (
+ra int PRIMARY KEY auto_increment,
+ddd varchar(255),
+telefone varchar(255),
+sobrenome varchar(255),
+nome varchar(255),
+email varchar(255),
+cidade varchar(255),
+codturma int,
+dia int,
+mes int,
+ano int
+FOREIGN KEY(codturma) REFERENCES turma (codturma) ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY(dia) REFERENCES dia (dia) ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY(mes) REFERENCES mes (mes) ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY(ano) REFERENCES ano (ano) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+CREATE TABLE noticia (
+codnoticia int PRIMARY KEY AUTO_INCREMENT,
+descricao varchar(255),
+titulo varchar(255),
+ra int,
+codcat int,
+ano int,
+mes int,
+dia int,
+FOREIGN KEY(ra) REFERENCES aluno (ra) ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY(codcat) REFERENCES categoria (codcat) ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY(dia) REFERENCES dia (dia) ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY(mes) REFERENCES mes (mes) ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY(ano) REFERENCES ano (ano) ON DELETE CASCADE ON UPDATE CASCADE
+
+);
+
+insert into categoria (categoria) values
+('Esporte'),
+('Politica'),
+('Religião'),
+('Cultura'),
+('Entreterimento'),
+('Econômia'),
+('Educação'),
+('Infra-Estrutura'),
+('Saúde');
+
+insert into dia values
+(1),(2),(3),(4),(5),(6),(7),(8),(9),(10),(11),
+(12),(13),(14),(15),(16),(17),(18),(19),(20),(21),
+(22),(23),(24),(25),(26),(27),(28),(29),(30),(31);
+
+insert into mes values
+(1),(2),(3),(4),(5),(6),(7),(8),(9),(10),(11),(12);
+
+insert into ano values
+(1950),(1951),(1952),(1953),(1954),(1955),(1956),(1957),(1958),(1959),(1960),
+(1961),(1962),(1963),(1964),(1965),(1966),(1967),(1968),(1969),(1970),
+(1971),(1972),(1973),(1974),(1975),(1976),(1977),(1978),(1979),(1980),
+(1981),(1982),(1983),(1984),(1985),(1986),(1987),(1988),(1989),(1990),
+(1991),(1992),(1993),(1994),(1995),(1996),(1997),(1998),(1999),(2000),
+(2001),(2002),(2003),(2004),(2005),(2006),(2007),(2008),(2009),(2010),
+(2011),(2012),(2013),(2014),(2015),(2016),(2017),(2018),(2019),(2020);
+
+insert into turma (turma) values
+('1C'),('2C'),('3C'),('1F'),('2F'),('3F');
+
+Insert into aluno ('nome','sobrenome','cidade','email','codturma','dia','mes','ano','ddd','telefone') values
+('Ana','alves','maúa','anaalves223@gmail.com','1','25','7','2005','11','11111-2222'),
+('Mario','Souza','Ribeirão Pires','marinho523@gmail.com','3','6','9','2004','11','12311-2222'),
+('Clarice','Amorim','maúa','clarice123@gmail.com','4','23','2','2005','11','11111-2123'),
+('Gabriela','Santana','Ribeirão pires','gabisan@gmail.com','3','13','1','2003','11','1432-2222'),
+('Fernando','Augusto','maúa','Fernando1234@gmail.com','1','12','8','2002','11','11381-2211');
+
+insert into noticia ('titulo','descricao','ra','codcat','dia','mes','ano') values
+('Impacto da pandemia nos gastos com publicidade digital do Reino Unido é dividido entre as indústrias','Alguns setores diminuirão imensamente os investimentos, mas houve quem cresceu Em termos de como os anunciantes no Reino Unido alocarão seus orçamentos digitais, 2020 será uma história de duas tendências. Por um lado, os investimentos em publicidade digital...','4','6','15','10','2020'),
+('Receitas de compras dentro de aplicativos estão ultrapassando receitas de publicidade','Aumento foi de 21,2% no comparativo ano a ano A pandemia reduziu os gastos dos anunciantes em geral, levando a um menor crescimento dos gastos...','3','6','12','10','2020'),
+('Em mais de 3 mil cidades, prefeitos eleitos deverão ter 80% dos recursos para realizar políticas públicas dependentes da União e dos estados','Levantamento feito pelo G1 com base em dados do Tesouro mostra que em 3,4 mil municípios ampla maioria dos recursos disponíveis é proveniente de repasses do estado ou do governo federal...','1','2','5','10','2020'),
+('Comissão do Senado aprova indicados de Bolsonaro para diretoria da ANPD','Três dos cinco integrantes da primeira diretoria da Autoridade Nacional de Proteção de Dados são militares. Nomes ainda serão analisados pelo plenário.','2','2','8','9','2020'),
+('Viralizou: piti de palmeirense, presida pistola, Cássio triste e milagres do goleiro do Flamengo','Expulsão de Gustavo Gómez, irritação de presidente do Athletico e destaque de Hugo Souza em contraponto ao arqueiro do Corinthians marcam rodada do fim de semana da Série A...','1','4','9','10','2020'),
+('Com pandemia, entretenimento se reinventa e muda a forma como as pessoas se divertem','Segundo levantamento da PwC, receita do segmento deve cair 6% neste ano, mas empresas e artistas já estão se adaptando...','1','5','10','7','2020'),
+('Como a alta do entretenimento digital impulsiona a produção de conteúdo em 8K?','Nos últimos meses, as ofertas de entretenimento vêm passando por uma transformação jamais vista. Se, por um lado, o isolamento social nos privou de uma série de atividades rotineiras, por outro fez com que o streaming e o consumo de conteúdo digital explodissem sem aviso prévio, resultando em um aumento imediato de 25% a 35% no tráfego da Internet...','2','5','11','8','2020'),
+('Atividades culturais aliviaram tensão do confinamento para 60% dos brasileiros','De forma empírica, sempre se fala que a arte diminui as tensões e ajuda a aliviar a dureza da vida. Para ter uma noção mais, o Itaú Cultural e o Datafolha realizaram um levantamento em conjunto sobre o papel do setor durante a pandemia do coronavírus...','5','4','18','8','2020'),
+('calendário de reabertura de museus e centros culturais na cidade de São Paulo','Masp voltou a receber público na última terça-feira (13). Pinacoteca, Museu do Futebol e Sala São Paulo reabriram na quinta-feira (15)...','3','4','15','10','2020'),
+('OMS se posiciona contra cloroquina; secretário de Saúde do ES comenta estudo','O levantamento mostrou que os medicamentos não tiveram efeito na redução de mortalidade em 28 dias ou na duração do tratamento hospitalar...','4','9','28','9','2020'),
+
+
+
